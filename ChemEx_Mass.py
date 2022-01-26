@@ -5,7 +5,7 @@ Created on Wed Jan 12 14:23:10 2022
 
 @author: karim
 """
-import numpy as np
+
 
 import CoolProp.CoolProp as CP
 from CoolProp.CoolProp import PropsSI
