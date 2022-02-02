@@ -81,7 +81,7 @@ hrsg_w_out.set_attr(T=485.54, x=1)
 # Properties of Components
 ac.set_attr(pr=10, eta_s=0.87)
 
-aph.set_attr(pr1=0.97,pr2=0.95)   #Q=25.3e+06 Calculated by Hand
+aph.set_attr(pr1=0.97,pr2=0.95)   
 
 
 cc.set_attr(pr=0.95, eta=0.98)
@@ -94,42 +94,42 @@ hrsg.comps['eva'].set_attr(pr2=1)
 nw.solve('design')
 nw.print_results()
 #Zusammensetzung des Rauchgases
-print(cc_in_exp.fluid.val)
+#print(cc_in_exp.fluid.val)
 
  #enthalpieberechnung mit dem KKH Modell mit der in TESPy vorliegenden Zusammensetzung
-h_fluegas=(0.761*kkh.enthalpy_mass('N2', 1520)+
-           0.049*kkh.enthalpy_mass('CO2', 1520)+
-           0.058*kkh.enthalpy_mass('H2Og', 1520)+
-           0.132*kkh.enthalpy_mass('O2', 1520))
+#h_fluegas=(0.761*kkh.enthalpy_mass('N2', 1520)+
+#          0.049*kkh.enthalpy_mass('CO2', 1520)+
+#         0.058*kkh.enthalpy_mass('H2Og', 1520)+
+#        0.132*kkh.enthalpy_mass('O2', 1520))
     
-h_fluegas_0=(0.761*kkh.enthalpy_mass('N2', 298.15)+
-           0.049*kkh.enthalpy_mass('CO2', 298.15)+
-           0.058*kkh.enthalpy_mass('H2Og', 298.15)+
-           0.132*kkh.enthalpy_mass('O2', 298.15))
+#h_fluegas_0=(0.761*kkh.enthalpy_mass('N2', 298.15)+
+#           0.049*kkh.enthalpy_mass('CO2', 298.15)+
+#           0.058*kkh.enthalpy_mass('H2Og', 298.15)+
+#           0.132*kkh.enthalpy_mass('O2', 298.15))
 # Enthalpie mit kkh im Vergleich, stimmt mit Penkuhn überein
 #print(kkh.enthalpy_mass('CH4', 298.15))
 
 #Enthalpie der Luft, Zusammensetztung aus TDO 
-h_air=(0.7748*kkh.enthalpy_mass('N2', 850)+
-           0.0003*kkh.enthalpy_mass('CO2', 850)+
-           0.019*kkh.enthalpy_mass('H2Og', 850)+
-           0.2059*kkh.enthalpy_mass('O2', 850))
+#h_air=(0.7748*kkh.enthalpy_mass('N2', 850)+
+#           0.0003*kkh.enthalpy_mass('CO2', 850)+
+#           0.019*kkh.enthalpy_mass('H2Og', 850)+
+#           0.2059*kkh.enthalpy_mass('O2', 850))
 #print(h_air)
 
 #Vergleich der (h-h0) Werte der Unterschiedlichen Modelle (KKH und Coolprop)
 #bei gleicher Zusammenssetzung 
-print(h_fluegas-h_fluegas_0)
+#print(h_fluegas-h_fluegas_0)
 
-h_fluegasCGAM0=(0.761*CPSI('H', 'T', 298.15, 'P', 101325, 'N2' )+
-                0.049*CPSI('H', 'T', 298.15, 'P', 101325,'CO2')+
-                0.058*CPSI('H', 'T', 298.15, 'P', 101325,'H2O')+
-                0.132*CPSI('H', 'T', 298.15, 'P', 101325,'O2'))
+#h_fluegasCGAM0=(0.761*CPSI('H', 'T', 298.15, 'P', 101325, 'N2' )+
+#                0.049*CPSI('H', 'T', 298.15, 'P', 101325,'CO2')+
+#                0.058*CPSI('H', 'T', 298.15, 'P', 101325,'H2O')+
+#                0.132*CPSI('H', 'T', 298.15, 'P', 101325,'O2'))
 
-h_fluegasCGAM=(0.761*CPSI('H', 'T', 1520, 'P', 914200, 'N2' )+
-               0.049*CPSI('H', 'T', 1520, 'P', 914200,'CO2')+
-               0.058*CPSI('H', 'T', 1520, 'P', 914200,'H2O')+
-               0.132*CPSI('H', 'T', 1520, 'P', 914200,'O2'))
-print((h_fluegasCGAM-h_fluegasCGAM0)/1000)
+#h_fluegasCGAM=(0.761*CPSI('H', 'T', 1520, 'P', 914200, 'N2' )+
+#               0.049*CPSI('H', 'T', 1520, 'P', 914200,'CO2')+
+#               0.058*CPSI('H', 'T', 1520, 'P', 914200,'H2O')+
+#               0.132*CPSI('H', 'T', 1520, 'P', 914200,'O2'))
+#print((h_fluegasCGAM-h_fluegasCGAM0)/1000)
 
 
 
