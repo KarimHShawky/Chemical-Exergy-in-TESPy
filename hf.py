@@ -41,6 +41,7 @@ k = {'methane': [1,  4],
      'butane':  [4,  10],
      'dodecane':[12, 26]}
 
+
 # Calculation of mass specific lower heating value, LHV in kJ/kg
 # Oxygen not in equation cause hf['oxygen'] = 0.0
 def lower_hv_mass(s,q):
@@ -48,5 +49,13 @@ def lower_hv_mass(s,q):
     lhv_mass = lhv / CP.PropsSI('M', s)
     return lhv_mass
 
+
+def higher_hv_mass(s,q):
+    hhv = -(-1 * hf[s][q] + k[s][0] * hf['carbondioxide'][1] + k[s][1] / 2 * hf['water(l)'][1])
+    hhv_mass = hhv / CP.PropsSI('M', s)
+    return hhv_mass
+
+
 # Give Substance name and source number of hf-value
-print(lower_hv_mass('methane',2))
+print(lower_hv_mass('methane', 2))
+print(higher_hv_mass('methane', 2))
