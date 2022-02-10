@@ -24,28 +24,29 @@ Chem_Ex_Elements = {'Ag': 70.2, 'Al': 988.2, 'Ar': 11.69, 'As': 494.6, 'Au': 50.
 
 #delta G Werte hier listen
 
+
 # Function to calculate mass specific standard chemical exergy of fluid = fld
-def ChemExCalc(fld):
-    Fluid_Elements = re.findall(r'(\w+)_{(\d+)', CP.get_fluid_param_string(fld, 'formula'))
-    Fluid_Chem_Ex = 0
+def chem_ex_calc(fld):
+    fluid_elements = re.findall(r'(\w+)_{(\d+)', CP.get_fluid_param_string(fld, 'formula'))
+    fluid_chem_ex = 0
 
-    for i in Fluid_Elements:
+    for i in fluid_elements:
         if i[0] in ['D', 'F', 'H', 'N', 'O']:
-            Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0] + "2") * int(i[1]) / 2
+            fluid_chem_ex += Chem_Ex_Elements.get(i[0] + "2") * int(i[1]) / 2
         else:
-            Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0]) * int(i[1])
+            fluid_chem_ex += Chem_Ex_Elements.get(i[0]) * int(i[1])
 
-    return(Fluid_Chem_Ex / (CP.PropsSI('M', fld)))
+    return fluid_chem_ex / CP.PropsSI('M', fld)
+
 
 # Über alle Coolprop Stoffe iterieren
 # Skippen für nicht Standard stoffe müsste noch gemacht werden
 for f in CP.FluidsList():
-    print(f, ChemExCalc(f))
-
+    print(f, chem_ex_calc(f))
 
 # einen bestimmten Stoff vorgeben
 Fluid_Name = 'methane'
-print(Fluid_Name, ChemExCalc(Fluid_Name))
+print(Fluid_Name, chem_ex_calc(Fluid_Name))
 
 # einen bestimmten Stoff vorgeben
 #Fluid_Name = 'methane'
