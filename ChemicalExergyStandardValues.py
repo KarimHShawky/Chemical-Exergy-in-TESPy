@@ -24,11 +24,9 @@ Chem_Ex_Elements = {'Ag': 70.2, 'Al': 988.2, 'Ar': 11.69, 'As': 494.6, 'Au': 50.
 
 #delta G Werte hier listen
 
-# Über alle Coolprop Stoffe iterieren
-# Skippen für nicht Standard stoffe müsste noch gemacht werden
-for f in CP.FluidsList():
-    Fluid_Name_Refprop = CP.get_fluid_param_string(f, 'REFPROP_name')
-    Fluid_Elements = re.findall(r'(\w+)_{(\d+)', CP.get_fluid_param_string(f, 'formula'))
+# Function to calculate mass specific standard chemical exergy of fluid = fld
+def ChemExCalc(fld):
+    Fluid_Elements = re.findall(r'(\w+)_{(\d+)', CP.get_fluid_param_string(fld, 'formula'))
     Fluid_Chem_Ex = 0
 
     for i in Fluid_Elements:
@@ -37,22 +35,31 @@ for f in CP.FluidsList():
         else:
             Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0]) * int(i[1])
 
-    print(Fluid_Name_Refprop, Fluid_Chem_Ex / (CP.PropsSI('M', f)))
+    return(Fluid_Chem_Ex / (CP.PropsSI('M', fld)))
+
+# Über alle Coolprop Stoffe iterieren
+# Skippen für nicht Standard stoffe müsste noch gemacht werden
+for f in CP.FluidsList():
+    print(f, ChemExCalc(f))
 
 
 # einen bestimmten Stoff vorgeben
 Fluid_Name = 'methane'
-Fluid_Name_Refprop = CP.get_fluid_param_string(Fluid_Name, 'REFPROP_name')
-Fluid_Elements = re.findall(r'(\w+)_{(\d+)', CP.get_fluid_param_string(Fluid_Name, 'formula'))
-Fluid_Chem_Ex = 0
+print(Fluid_Name, ChemExCalc(Fluid_Name))
 
-for i in Fluid_Elements:
-    if i[0] in ['D', 'F', 'H', 'N', 'O']:
-        Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0] + "2") * int(i[1]) / 2
-    else:
-        Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0]) * int(i[1])
+# einen bestimmten Stoff vorgeben
+#Fluid_Name = 'methane'
+#Fluid_Name_Refprop = CP.get_fluid_param_string(Fluid_Name, 'REFPROP_name')
+#Fluid_Elements = re.findall(r'(\w+)_{(\d+)', CP.get_fluid_param_string(Fluid_Name, 'formula'))
+#Fluid_Chem_Ex = 0
 
-print(Fluid_Name_Refprop, Fluid_Chem_Ex/(CP.PropsSI('M', Fluid_Name)))
+#for i in Fluid_Elements:
+#    if i[0] in ['D', 'F', 'H', 'N', 'O']:
+#        Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0] + "2") * int(i[1]) / 2
+#    else:
+#        Fluid_Chem_Ex += Chem_Ex_Elements.get(i[0]) * int(i[1])
+#
+#print(Fluid_Name_Refprop, Fluid_Chem_Ex/(CP.PropsSI('M', Fluid_Name)))
 
 
 # #GoF in kJ/mol
