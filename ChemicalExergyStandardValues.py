@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: karim
+@author: Karim
 @author: Mathias Hofmann, TU Berlin
 """
 
@@ -67,7 +67,7 @@ print(Fluid_Name, chem_ex_calc(Fluid_Name))
 # #GoF manual input from the user
 # def ChemExCalc (Ele1, Nr1, Ele2, Nr2, Ele3, Nr3, Ele4, Nr4, name, GoF) :
 #
-#              a=(-(GoF)+
+#              a=(GoF+
 #               Nr1*szargut[Ele1]+
 #               Nr2*szargut[Ele2]+
 #               Nr3*szargut[Ele3]+
@@ -78,5 +78,5 @@ print(Fluid_Name, chem_ex_calc(Fluid_Name))
 #              return a
 #
 #
-# i=ChemExCalc( 'H2', 4, 'O2', 0, 'C', 4, 'Xe',0, 'T2BUTENE', -63.2)
+# i=ChemExCalc( 'H2', 4, 'O2', 0, 'C', 4, 'Xe',0, 'T2BUTENE', 63.2)
 # print(i)
