@@ -73,7 +73,7 @@ Chem_ex_mass={'1-Butene':47.34, '1BUTENE':47.34, '1-BUTENE':47.34 ,'Butene':47.3
               
               
               }
-print(Chem_ex_mass['CH4'])
+#print(Chem_ex_mass['CH4'])
 #liste von nicht berechneten stoffen D4, D5, D6, Demethylcarbonat,HFE-143m,
 # MD2M,MD3M, MD4M, MDM, MM, Methyllinoleate ,Methyllinolenate, Methyloleate,
 #Methylpalmitate, Methylstearate, neopentane, Novec649, Orthodeuterium (keine Summenformel),
