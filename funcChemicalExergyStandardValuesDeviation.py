@@ -12,6 +12,9 @@ from libChemExResults import *
 Chem_Ex_Deviation = {}
 
 for f in Chem_Ex_Szargut:
-    Chem_Ex_Deviation[f] = (Chem_Ex_Szargut[f][2] / Chem_Ex_Results[f][1] - 1) * 100
+    if type(Chem_Ex_Szargut[f][2]) == float:
+        Chem_Ex_Deviation[f] = (Chem_Ex_Szargut[f][2] / Chem_Ex_Results[f][1] - 1) * 100
+    else:
+        Chem_Ex_Deviation[f] = 'Nan'
 
 print(Chem_Ex_Deviation)
