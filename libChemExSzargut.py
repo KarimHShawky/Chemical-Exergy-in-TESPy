@@ -7,10 +7,13 @@
 # Values of standard chemical exergies of selected substances, adopted from
 # Szargut et al. [QUELLE]
 # [kJ/mol]
-#                                    Szargut2007/Bakshi2011
+#                                        Szargut2007    Szargut 1988
+#                                        Bakshi2011
 Chem_Ex_Szargut = {
-    'ETHANE':             ['74-84-0', 1495.0],
-    'METHANE':            ['74-82-8', 831.2],
+    '1BUTENE':            ['106-98-9',   'NaN',         2659.7],
+    'ACETONE':            ['67-64-1',    1797.3,        1788.5],
+    'ETHANE':             ['74-84-0',    1495.0,        1495.84],
+    'METHANE':            ['74-82-8',    831.2,         831.65],
 }
 
 

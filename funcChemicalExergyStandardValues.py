@@ -4,7 +4,7 @@
 @author: Mathias Hofmann, TU Berlin
 """
 
-from libChemExElements import *
+from libChemExElementsSzargut1989 import *
 from libFormationValues import *
 import CoolProp.CoolProp as CP
 import re

@@ -12,6 +12,6 @@ from libChemExResults import *
 Chem_Ex_Deviation = {}
 
 for f in Chem_Ex_Szargut:
-    Chem_Ex_Deviation[f] = (Chem_Ex_Szargut[f][1] / Chem_Ex_Results[f][1] - 1) * 100
+    Chem_Ex_Deviation[f] = (Chem_Ex_Szargut[f][2] / Chem_Ex_Results[f][1] - 1) * 100
 
 print(Chem_Ex_Deviation)
