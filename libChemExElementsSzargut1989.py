@@ -4,7 +4,7 @@
 @author: Mathias Hofmann, TU Berlin
 """
 
-### MUST CHECKED !!!
+### CHECKED !!!
 
 # Values of standard chemical exergies of the elements, adopted from
 # Szargut 1989: Chemical Exergies of the Elements, Applied Energy (32), 269-286
