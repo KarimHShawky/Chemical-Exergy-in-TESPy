@@ -5,8 +5,8 @@ Created on Fri Jan 14 14:13:28 2022
 
 @author: karim
 """
-from kkh import kkh
-from CoolProp.CoolProp import PropsSI as CPSI
+#from kkh import kkh
+#from CoolProp.CoolProp import PropsSI as CPSI
 from tespy.networks import Network
 from tespy.connections import Connection, Bus
 from tespy.components import (
@@ -15,7 +15,7 @@ from tespy.components import (
 
 
 
-nw= Network(fluids=['Ar','CO2', 'CH4','O2','N2' ,'H2O'], p_range=[1, 12],
+nw= Network(fluids=['CO2', 'CH4','O2','N2' ,'H2O'], 
             T_unit='K', p_unit='bar', h_unit='kJ / kg' , m_unit='kg / s')
 
 
@@ -51,44 +51,47 @@ aph_in_eva=Connection( aph, 'out1', eva, 'in1')
 
 
 
-
-w_in_dr=Connection(w_in, 'out1',  dr, 'in1')
-#eco_in_dr=Connection(eco, 'out2', dr, 'in1')
+# Connections of the Heat Recovery Steam Generator
+w_in_eco=Connection(w_in, 'out1',  eco, 'in2')
+eco_in_dr=Connection(eco, 'out2', dr, 'in1')
 dr_in_eva= Connection(dr, 'out1', eva, 'in2')
 dr_w_out= Connection (dr, 'out2', w_out, 'in1')
 eva_in_dr=Connection(eva, 'out2', dr, 'in2')
-eva_in_out=Connection(eva, 'out1', out, 'in1')
-#eco_in_out=Connection(eco ,'out1', out, 'in1')
+eva_in_eco=Connection(eva, 'out1', eco, 'in1')
+eco_in_out=Connection(eco ,'out1', out, 'in1')
 
 
 nw.add_conns(a_in_ac, ac_in_aph, aph_in_cc, fuel_in_va1, va1_in_cc,cc_in_exp,
              exp_in_aph, aph_in_eva,  dr_w_out, dr_in_eva, 
-             eva_in_dr, w_in_dr,  eva_in_out #eco_in_out, eco_in_dr
+             eva_in_dr, w_in_eco,  eva_in_eco, eco_in_dr,eco_in_out
             )
 
 
-power=Bus('power output', P=-30e6)
+
+power=Bus('power output')
 power.add_comps({'comp':exp, 'char':1}, 
                 {'comp':ac, 'char':1, 'base':'bus'})
-
 nw.add_busses(power)
 
 
 # Properties/Attributes of streams
 a_in_ac.set_attr(m=91.28 ,T=298.15, p=1.013,  
-                 fluid={ 'Ar':0, 'N2': 0.7443, 'H2O': 0.1554,
-                                    'CH4': 0, 'CO2': 0.0489, 'O2': 0.051})
+                 fluid={'N2': 0.75767, 'H2O':0.0119,
+                                    'CH4': 0, 'CO2': 0.00046, 'O2':  0.22997 })
 fuel_in_va1.set_attr(T=298.15, p=12, 
-                    fluid={'Ar': 0, 'N2': 0, 'H2O': 0,
+                    fluid={'N2': 0, 'H2O': 0,
                                     'CH4': 1, 'CO2': 0, 'O2': 0})
 aph_in_cc.set_attr(T=850)
 cc_in_exp.set_attr(T=1520)
 
-w_in_dr.set_attr(T=298.15, p=20, m=14, x=0,
-                   fluid={'Ar': 0, 'N2': 0, 'H2O': 1,
+w_in_eco.set_attr(T=298.15, p=20, m=14, 
+                   fluid={'N2': 0, 'H2O': 1,
                                    'CH4':0 , 'CO2': 0, 'O2': 0})
-dr_w_out.set_attr(p=20, x=1)
-eva_in_out.set_attr(p=1.013)
+
+eco_in_dr.set_attr(Td_bp=-15)
+eva_in_dr.set_attr(x=0.5)
+
+eco_in_out.set_attr(p=1.013)
 
 
 # Properties of Components
@@ -101,12 +104,19 @@ cc.set_attr(pr=0.95, eta=0.98)
 
 exp.set_attr(eta_s=0.86)
 
+eva.set_attr(pr1=0.95)
+eco.set_attr(pr1=0.95, pr2=1)
+
 
 nw.solve('design')
+
+
+
+power.set_attr(P=-30e6)
+
+a_in_ac.set_attr(m=None)
+nw.solve('design')
 nw.print_results()
-
-
-
 
 #Zusammensetzung des Rauchgases
 # print(cc_in_exp.fluid.val)
@@ -135,15 +145,15 @@ nw.print_results()
 # #bei gleicher Zusammenssetzung 
 # print(h_fluegas-h_fluegas_0)
 
-# h_fluegasCGAM0=(0.761*CPSI('H', 'T', 298.15, 'P', 101325, 'N2' )+
-#                 0.049*CPSI('H', 'T', 298.15, 'P', 101325,'CO2')+
+#h_fluegasCGAM0=(0.761*CPSI('H', 'T', 298.15, 'P', 101325, 'N2' )+
+#                0.049*CPSI('H', 'T', 298.15, 'P', 101325,'CO2')+
 #                 0.058*CPSI('H', 'T', 298.15, 'P', 101325,'H2O')+
 #                 0.132*CPSI('H', 'T', 298.15, 'P', 101325,'O2'))
 
 # h_fluegasCGAM=(0.761*CPSI('H', 'T', 1520, 'P', 914200, 'N2' )+
-               0.049*CPSI('H', 'T', 1520, 'P', 914200,'CO2')+
-               0.058*CPSI('H', 'T', 1520, 'P', 914200,'H2O')+
-               0.132*CPSI('H', 'T', 1520, 'P', 914200,'O2'))
+   #            0.049*CPSI('H', 'T', 1520, 'P', 914200,'CO2')+
+    #           0.058*CPSI('H', 'T', 1520, 'P', 914200,'H2O')+
+     #          0.132*CPSI('H', 'T', 1520, 'P', 914200,'O2'))
 #print((h_fluegasCGAM-h_fluegasCGAM0)/1000)
 
 
