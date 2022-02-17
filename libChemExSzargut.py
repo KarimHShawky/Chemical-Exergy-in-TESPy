@@ -59,7 +59,8 @@ Chem_Ex_Szargut = {
     'OCTAMETHYLTRISILOXANE':        ['107-51-7',   'NaN',         'NaN'],
     'HEXAMETHYLDISILOXANE':         ['107-46-0',   'NaN',         'NaN'],
     'METHANE':                      ['74-82-8',    831.2,         831.65],  # g
-    'METHANOL':                     ['67-56-1',    'NaN',         718.0],   # l
+    'METHANOL':                     ['67-56-1',    'NaN',         722.3],   # g -> citated by Bejan1996 as Szargut1988
+    'METHANOL(l)':                  ['67-56-1',    'NaN',         718.0],   # l
     'METHYLLINOLEATE':              ['112-63-0',   'NaN',         'NaN'],
     'METHYLLINOLENATE':             ['301-00-8',   'NaN',         'NaN'],
     'METHYLOLEATE':                 ['112-62-9',   'NaN',         'NaN'],
