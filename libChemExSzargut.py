@@ -16,14 +16,14 @@ Chem_Ex_Szargut = {
     'ACETONE':                      ['67-64-1',    1797.3,        1788.5],  # l
     'AMMONIA':                      ['7664-41-7',  337.9,         337.9],   # g
     'ARGON':                        ['7440-37-1',  11.69,         11.69],   # g
-    'BENZENE':                      ['71-43-2',    3301.3,        3303 .6], # g
-    'BENZENE(l)':                   ['71-43-2',    3296.2,        3298 .5], # l
+    'BENZENE':                      ['71-43-2',    3301.3,        3303.6], # g
+    'BENZENE(l)':                   ['71-43-2',    3296.2,        3298.5], # l
     'CARBONDIOXIDE':                ['124-38-9',   19.48,         19.87],   # g
     'CARBONMONOXIDE':               ['630-08-0',   274.71,        275.10],  # g
     'CARBONYLSULFIDE':              ['463-58-1',   'NaN',         'NaN'],
     'CYCLOHEXANE':                  ['110-82-7',   'NaN',         3914.3],  # g
     'CYCLOHEXANE(l)':               ['110-82-7',   'NaN',         3909.2],  # l
-    'CYCLOPROPANE':                 ['75-19-4',    'NaN',         2043 .2], # g
+    'CYCLOPROPANE':                 ['75-19-4',    'NaN',         2043.2], # g
     'CYCLOPENTANE':                 ['287-92-3',   'NaN',         'NaN'],
     'OCTAMETHYLCYCLOTETRASILOXANE': ['556-67-2',   'NaN',         'NaN'],
     'DECAMETHYLCYCLOPENTASILOXANE': ['541-02-6',   'NaN',         'NaN'],
@@ -83,8 +83,8 @@ Chem_Ex_Szargut = {
     'SULFURHEXAFLUORIDE':           ['2551-62-4',  'NaN',         'NaN'],
     'TOLUENE':                      ['108-88-3',   'NaN',         3943.4], # g
     'TOLUENE(l)':                   ['108-88-3',   3928.3,        3931.0], # l
-    'WATER':                        ['7732-18-5',  9.5            9.5],    # g
-    'WATER(l)':                     ['7732-18-5',  0.9            0.9],    # l
+    'WATER':                        ['7732-18-5',  9.5,           9.5],    # g
+    'WATER(l)':                     ['7732-18-5',  0.9,           0.9],    # l
     'XENON':                        ['7440-63-3',  40.33,         40.33],  # g
     'C2BUTENE':                     ['590-18-1',  'NaN',         'NaN'],
     'M-XYLENE':                     ['108-38-3',  'NaN',         'NaN'],
