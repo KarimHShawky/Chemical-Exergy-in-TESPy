@@ -5,16 +5,69 @@
 """
 
 # Values of standard chemical exergies of selected substances, adopted from
-# Szargut et al. [QUELLE]
+# Bakshi, B. R.; Gutowksi, T. G.; Sekulic, D. P. (Ed.): Thermodynamics and the Destruction of Resources, Cambridge University Press, Cambridge, 2011
+# Szargut, J.: Egzergia. Widawnictwo Politechniki Shlaskej, Gliwice, Poland, 2007.
+# Szargut, J.; Morris, D. R.; Steward F. R.: Exergy Analysis of Thermal, Chemical, and Metallurgical Processes, Hemisphere, New york, 1988.
 # [kJ/mol]
-#                                        Szargut2007    Szargut 1988
-#                                        Bakshi2011
+#                                                 Szargut2007    Szargut1988
+#                                                 Bakshi2011
 Chem_Ex_Szargut = {
-    '1BUTENE':            ['106-98-9',   'NaN',         2659.7],
-    'ACETONE':            ['67-64-1',    1797.3,        1788.5],
-    'ETHANE':             ['74-84-0',    1495.0,        1495.84],
-    'METHANE':            ['74-82-8',    831.2,         831.65],
+    '1BUTENE':                      ['106-98-9',   'NaN',         2659.7],  # g
+    'ACETONE':                      ['67-64-1',    1797.3,        1788.5],  # l
+    'AMMONIA':                      ['7664-41-7',  337.9,         337.9],   # g
+    'ARGON'                         ['7440-37-1',  11.69,         11.69],   # g
+    'BENZENE':                      ['71-43-2',    3301.3,        3303 .6], # g
+    'BENZENE(l)':                   ['71-43-2',    3296.2,        3298 .5], # l
+    'CARBONDIOXIDE':                ['124-38-9',],
+    'CARBONMONOXIDE':               ['630-08-0',],
+    'CARBONYLSULFIDE'               ['463-58-1',]
+    'CYCLOHEXANE':                  ['110-82-7',],
+    'CYCLOPROPANE':                 ['75-19-4',],
+    'CYCLOPENTANE':                 ['287-92-3',],
+    'OCTAMETHYLCYCLOTETRASILOXANE'  ['556-67-2',],
+    'DECAMETHYLCYCLOPENTASILOXANE'  ['541-02-6']
+    'DODECAMETHYLCYCLOHEXASILOXANE' ['540-97-6']
+    '1,2-DICHLOROETHANE':           ['107-06-2',],
+    'DEE':                          ['60-29-7',],
+    'DIMETHYLCARBONATE'             ['616-38-6']
+    'DIMETHYLETHER':                ['15-10-6',],
+    'ETHANE':                       ['74-84-0',    1495.0,        1495.84],
+    'ETHANOL':                      ['64-17-5',],
+    'ETHYLBENZENE':                 ['100-41-4',],
+    'ETHYLENE':                     ['74-85-1',],
+    'ETHYLENEOXIDE':                ['75-21-8',],
+    'FLUORINE'                      ['7782-41-4'],
+    'HFE143M'                       ['421-14-7'],
+    'HEAVYWATER'                    ['7789-20-0']
+    'HELIUM'                        ['7440-59-7']
+    'HYDROGEN'                      ['1333-74-0']
+    'HYDROGENCHLORIDE':             ['7647-01-0',],
+    'HYDROGENSULFIDE':              ['7783-06-4',],
+    'ISOBUTAN':                     ['75-28-5',],
+    'ISOBUTENE':                    ['115-11-7',],
+    'ISOHEXANE':                    ['107-83-5',],
+    'ISOPENTANE':                   ['78-78-4',],
+    'KRYPTON'
+    'DECAMETHYLTETRASILOXANE'
+    'DODECAMETHYLPENTASILOXANE'
+    'TETRADECAMETHYLHEXASILOXANE'
+    'OCTAMETHYLTRISILOXANE'
+    'HEXAMETHYLDISILOXANE'
+    'METHANE':                      ['74-82-8',    831.2,         831.65],
+    'METHANOL':                     ['67-56-1',],
+#
+#
+'NITROUSOXIDE': ['10024-97-2', ],
+#
+#
+'PROPYLENE': ['115-07-1', 42.07974, 2.023, 6.264, 2.67],
+'PROPYNE': ['74-99-7', 40.06386, 18.49, 19.384, 2.4836]
+
+
+
+
 }
+
 
 
 #
