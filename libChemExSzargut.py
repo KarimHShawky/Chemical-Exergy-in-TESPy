@@ -15,18 +15,20 @@ Chem_Ex_Szargut = {
     '1BUTENE':                      ['106-98-9',   'NaN',         2659.7],  # g
     'ACETONE':                      ['67-64-1',    1797.3,        1788.5],  # l
     'AMMONIA':                      ['7664-41-7',  337.9,         337.9],   # g
-    'ARGON'                         ['7440-37-1',  11.69,         11.69],   # g
+    'ARGON':                        ['7440-37-1',  11.69,         11.69],   # g
     'BENZENE':                      ['71-43-2',    3301.3,        3303 .6], # g
     'BENZENE(l)':                   ['71-43-2',    3296.2,        3298 .5], # l
-    'CARBONDIOXIDE':                ['124-38-9',],
-    'CARBONMONOXIDE':               ['630-08-0',],
-    'CARBONYLSULFIDE'               ['463-58-1',]
-    'CYCLOHEXANE':                  ['110-82-7',],
-    'CYCLOPROPANE':                 ['75-19-4',],
-    'CYCLOPENTANE':                 ['287-92-3',],
-    'OCTAMETHYLCYCLOTETRASILOXANE'  ['556-67-2',],
-    'DECAMETHYLCYCLOPENTASILOXANE'  ['541-02-6']
-    'DODECAMETHYLCYCLOHEXASILOXANE' ['540-97-6']
+    'CARBONDIOXIDE':                ['124-38-9',   19.48,         19.87],   # g
+    'CARBONMONOXIDE':               ['630-08-0',   274.71,        275.10],  # g
+    'CARBONYLSULFIDE':              ['463-58-1',   'NaN',         'NaN'],
+    'CYCLOHEXANE':                  ['110-82-7',   'NaN',         3914.3],  # g
+    'CYCLOHEXANE(l)':               ['110-82-7',   'NaN',         3909.2],  # l
+    'CYCLOPROPANE':                 ['75-19-4',    'NaN',         2043 .2], # g
+    'CYCLOPENTANE':                 ['287-92-3',   'NaN',         'NaN'],
+    'OCTAMETHYLCYCLOTETRASILOXANE': ['556-67-2',   'NaN',         'NaN'],
+    'DECAMETHYLCYCLOPENTASILOXANE': ['541-02-6',   'NaN',         'NaN'],
+    'DODECAMETHYLCYCLOHEXASILOXANE':['540-97-6',   'NaN',         'NaN'],
+    'DEUTERIUM':                    ['7782-39-0',  263.8,         263.8],   # g
     '1,2-DICHLOROETHANE':           ['107-06-2',],
     'DEE':                          ['60-29-7',],
     'DIMETHYLCARBONATE'             ['616-38-6']
