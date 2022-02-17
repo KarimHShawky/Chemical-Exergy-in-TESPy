@@ -29,37 +29,47 @@ Chem_Ex_Szargut = {
     'DECAMETHYLCYCLOPENTASILOXANE': ['541-02-6',   'NaN',         'NaN'],
     'DODECAMETHYLCYCLOHEXASILOXANE':['540-97-6',   'NaN',         'NaN'],
     'DEUTERIUM':                    ['7782-39-0',  263.8,         263.8],   # g
-    '1,2-DICHLOROETHANE':           ['107-06-2',],
-    'DEE':                          ['60-29-7',],
-    'DIMETHYLCARBONATE'             ['616-38-6']
-    'DIMETHYLETHER':                ['15-10-6',],
-    'ETHANE':                       ['74-84-0',    1495.0,        1495.84],
-    'ETHANOL':                      ['64-17-5',],
-    'ETHYLBENZENE':                 ['100-41-4',],
-    'ETHYLENE':                     ['74-85-1',],
-    'ETHYLENEOXIDE':                ['75-21-8',],
-    'FLUORINE'                      ['7782-41-4'],
-    'HFE143M'                       ['421-14-7'],
-    'HEAVYWATER'                    ['7789-20-0']
-    'HELIUM'                        ['7440-59-7']
-    'HYDROGEN'                      ['1333-74-0']
-    'HYDROGENCHLORIDE':             ['7647-01-0',],
-    'HYDROGENSULFIDE':              ['7783-06-4',],
-    'ISOBUTAN':                     ['75-28-5',],
-    'ISOBUTENE':                    ['115-11-7',],
-    'ISOHEXANE':                    ['107-83-5',],
-    'ISOPENTANE':                   ['78-78-4',],
-    'KRYPTON'
-    'DECAMETHYLTETRASILOXANE'
-    'DODECAMETHYLPENTASILOXANE'
-    'TETRADECAMETHYLHEXASILOXANE'
-    'OCTAMETHYLTRISILOXANE'
-    'HEXAMETHYLDISILOXANE'
-    'METHANE':                      ['74-82-8',    831.2,         831.65],
-    'METHANOL':                     ['67-56-1',],
-#
-#
-'NITROUSOXIDE': ['10024-97-2', ],
+    '1,2-DICHLOROETHANE':           ['107-06-2',   'NaN',         'NaN'],
+    'DEE':                          ['60-29-7',    'NaN',         'NaN'],
+    'DIMETHYLCARBONATE':            ['616-38-6',   'NaN',         'NaN'],
+    'DIMETHYLETHER':                ['15-10-6',    'NaN',         1419.5],  # g
+    'ETHANE':                       ['74-84-0',    1495.0,        1495.84], # g
+    'ETHANOL':                      ['64-17-5',    'NaN',         1363.9],  # g
+    'ETHANOL(l)':                   ['64-17-5',    1356.9,        1357.7],  # l
+    'ETHYLBENZENE':                 ['100-41-4',   'NaN',         4598.8],  # g
+    'ETHYLBENZENE(l)':              ['100-41-4',   4584.8,        4587.9],  # l
+    'ETHYLENE':                     ['74-85-1',    1360.3,        1361.1],  # g
+    'ETHYLENEOXIDE':                ['75-21-8',    'NaN',         1284.4],  # g
+    'FLUORINE':                     ['7782-41-4',  504.9,         466.3],   # g
+    'HFE143M':                      ['421-14-7',   'NaN',         'NaN'],
+    'HEAVYWATER':                   ['7789-20-0',  31.2,          31.2],    # g
+    'HEAVYWATER(l)':                ['7789-20-0',  22.3,          22.3],    # l
+    'HELIUM':                       ['7440-59-7',  30.37,         30.37],   # g
+    'HYDROGEN':                     ['1333-74-0',  236.09,        236.1],   # g
+    'HYDROGENCHLORIDE':             ['7647-01-0',  84.5,          84.5],    # g
+    'HYDROGENSULFIDE':              ['7783-06-4',  812.0,         812.0],   # g
+    'ISOBUTAN':                     ['75-28-5',    'NaN',         'NaN'],
+    'ISOBUTENE':                    ['115-11-7',   'NaN',         'NaN'],
+    'ISOHEXANE':                    ['107-83-5',   'NaN',         'NaN'],
+    'ISOPENTANE':                   ['78-78-4',    'NaN',         'NaN'],
+    'KRYPTON':                      ['7439-90-9',  34.36,         34.36],   # g
+    'DECAMETHYLTETRASILOXANE':      ['141-62-8',   'NaN',         'NaN'],
+    'DODECAMETHYLPENTASILOXANE':    ['141-63-9',   'NaN',         'NaN'],
+    'TETRADECAMETHYLHEXASILOXANE':  ['107-52-8',   'NaN',         'NaN'],
+    'OCTAMETHYLTRISILOXANE':        ['107-51-7',   'NaN',         'NaN'],
+    'HEXAMETHYLDISILOXANE':         ['107-46-0',   'NaN',         'NaN'],
+    'METHANE':                      ['74-82-8',    831.2,         831.65],  # g
+    'METHANOL':                     ['67-56-1',    'NaN',         718.0],   # l
+    'METHYLLINOLEATE':              ['112-63-0',   'NaN',         'NaN'],
+    'METHYLLINOLENATE':             ['301-00-8',   'NaN',         'NaN'],
+    'METHYLOLEATE':                 ['112-62-9',   'NaN',         'NaN'],
+    'METHYLPALMITATE':              ['112-39-0',   'NaN',         'NaN'],
+    'METHYLSTEARATE':               ['112-61-8',   'NaN',         'NaN'],
+    'NEON':                         ['7440-01-9',  27.19,         27.19],  # g
+    'NEOPENTANE':                   ['463-82-1',   'NaN',         'NaN'],
+    'NITROGEN':                     ['7727-37-9',  0.72,          0.72],   # g
+    'NITROUSOXIDE':                 ['10024-97-2', 106.9,         106.9],  # g
+
 #
 #
 'PROPYLENE': ['115-07-1', 42.07974, 2.023, 6.264, 2.67],
