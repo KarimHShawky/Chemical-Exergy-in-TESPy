@@ -16,14 +16,14 @@ Chem_Ex_Szargut = {
     'ACETONE':                      ['67-64-1',    1797.3,        1788.5],  # l
     'AMMONIA':                      ['7664-41-7',  337.9,         337.9],   # g
     'ARGON':                        ['7440-37-1',  11.69,         11.69],   # g
-    'BENZENE':                      ['71-43-2',    3301.3,        3303.6], # g
-    'BENZENE(l)':                   ['71-43-2',    3296.2,        3298.5], # l
+    'BENZENE':                      ['71-43-2',    3301.3,        3303.6],  # g
+    'BENZENE(l)':                   ['71-43-2',    3296.2,        3298.5],  # l
     'CARBONDIOXIDE':                ['124-38-9',   19.48,         19.87],   # g
     'CARBONMONOXIDE':               ['630-08-0',   274.71,        275.10],  # g
     'CARBONYLSULFIDE':              ['463-58-1',   'NaN',         'NaN'],
     'CYCLOHEXANE':                  ['110-82-7',   'NaN',         3914.3],  # g
     'CYCLOHEXANE(l)':               ['110-82-7',   'NaN',         3909.2],  # l
-    'CYCLOPROPANE':                 ['75-19-4',    'NaN',         2043.2], # g
+    'CYCLOPROPANE':                 ['75-19-4',    'NaN',         2043.2],  # g
     'CYCLOPENTANE':                 ['287-92-3',   'NaN',         'NaN'],
     'OCTAMETHYLCYCLOTETRASILOXANE': ['556-67-2',   'NaN',         'NaN'],
     'DECAMETHYLCYCLOPENTASILOXANE': ['541-02-6',   'NaN',         'NaN'],
@@ -66,42 +66,42 @@ Chem_Ex_Szargut = {
     'METHYLOLEATE':                 ['112-62-9',   'NaN',         'NaN'],
     'METHYLPALMITATE':              ['112-39-0',   'NaN',         'NaN'],
     'METHYLSTEARATE':               ['112-61-8',   'NaN',         'NaN'],
-    'NEON':                         ['7440-01-9',  27.19,         27.19],  # g
+    'NEON':                         ['7440-01-9',  27.19,         27.19],   # g
     'NEOPENTANE':                   ['463-82-1',   'NaN',         'NaN'],
-    'NITROGEN':                     ['7727-37-9',  0.72,          0.72],   # g
-    'NITROUSOXIDE':                 ['10024-97-2', 106.9,         106.9],  # g
+    'NITROGEN':                     ['7727-37-9',  0.72,          0.72],    # g
+    'NITROUSOXIDE':                 ['10024-97-2', 106.9,         106.9],   # g
     'NOVEC649':                     ['756-13-8',   'NaN',         'NaN'],
     'ORTHODEUTERIUM':               ['7782-39-0o', 'NaN',         'NaN'],
     'ORTHOHYDROGEN':                ['1333-74-0o', 'NaN',         'NaN'],
-    'OXYGEN':                       ['7782-44-7',  3.97,          3.97],   # g
+    'OXYGEN':                       ['7782-44-7',  3.97,          3.97],    # g
     'PARADEUTERIUM':                ['7782-39-0p', 'NaN',         'NaN'],
     'PARAHYDROGEN':                 ['1333-74-0p', 'NaN',         'NaN'],
-    'PROPYLENE':                    ['115-07-1',   2002.7,        2003.9], # g
-    'PROPYNE':                      ['74-99-7',    'NaN',         1899.5], # g
+    'PROPYLENE':                    ['115-07-1',   2002.7,        2003.9],  # g
+    'PROPYNE':                      ['74-99-7',    'NaN',         1899.5],  # g
     'R11':                          ['75-69-4',    'NaN',         'NaN'],
 # R ...
-    'SULFURDIOXIDE':                ['7446-09-5',  313.4,         313.4],  # g
+    'SULFURDIOXIDE':                ['7446-09-5',  313.4,         313.4],   # g
     'SULFURHEXAFLUORIDE':           ['2551-62-4',  'NaN',         'NaN'],
-    'TOLUENE':                      ['108-88-3',   'NaN',         3943.4], # g
-    'TOLUENE(l)':                   ['108-88-3',   3928.3,        3931.0], # l
-    'WATER':                        ['7732-18-5',  9.5,           9.5],    # g
-    'WATER(l)':                     ['7732-18-5',  0.9,           0.9],    # l
-    'XENON':                        ['7440-63-3',  40.33,         40.33],  # g
+    'TOLUENE':                      ['108-88-3',   'NaN',         3943.4],  # g
+    'TOLUENE(l)':                   ['108-88-3',   3928.3,        3931.0],  # l
+    'WATER':                        ['7732-18-5',  9.5,           9.5],     # g
+    'WATER(l)':                     ['7732-18-5',  0.9,           0.9],     # l
+    'XENON':                        ['7440-63-3',  40.33,         40.33],   # g
     'C2BUTENE':                     ['590-18-1',  'NaN',         'NaN'],
     'M-XYLENE':                     ['108-38-3',  'NaN',         'NaN'],
-    'N-BUTANE':                     ['106-97-8',  2804.2,        2805.8],  # g
-    'N-DECANE':                     ['124-18-5',  'NaN',         6716.89], # l
-    'N-DODECANE':                   ['112-40-3',  'NaN',         8029.4],  # l
-    'N-HEPTANE':                    ['142-82-5',  'NaN',         4761.7],  # l
-    'N-HEXANE':                     ['110-54-3',  'NaN',         4118.5],  # g
-    'N-HEXANE(l)':                  ['110-54-3',  'NaN',         4114.5],  # l
-    'N-NONANE':                     ['111-84-2',  'NaN',         6064.9],  # l
-    'N-OCTANE':                     ['111-65-9',  'NaN',         5413.1],  # l
-    'N-PENTANE':                    ['109-66-0',  3461.3,        3463.3],  # g
-    'N-PENTANE(l)':                 ['109-66-0',  'NaN',         3461.8],  # l
-    'N-PROPANE':                    ['74-98-6',   2152.8,        2154.0],  # g
-    'N-UNDECANE':                   ['1120-21-4', 'NaN',         7376.9],  # l
-    'O-XYLENE':                     ['95-47-6',   'NaN',         4513.1],  # l
+    'N-BUTANE':                     ['106-97-8',  2804.2,        2805.8],   # g
+    'N-DECANE':                     ['124-18-5',  'NaN',         6716.89],  # l
+    'N-DODECANE':                   ['112-40-3',  'NaN',         8029.4],   # l
+    'N-HEPTANE':                    ['142-82-5',  'NaN',         4761.7],   # l
+    'N-HEXANE':                     ['110-54-3',  'NaN',         4118.5],   # g
+    'N-HEXANE(l)':                  ['110-54-3',  'NaN',         4114.5],   # l
+    'N-NONANE':                     ['111-84-2',  'NaN',         6064.9],   # l
+    'N-OCTANE':                     ['111-65-9',  'NaN',         5413.1],   # l
+    'N-PENTANE':                    ['109-66-0',  3461.3,        3463.3],   # g
+    'N-PENTANE(l)':                 ['109-66-0',  'NaN',         3461.8],   # l
+    'N-PROPANE':                    ['74-98-6',   2152.8,        2154.0],   # g
+    'N-UNDECANE':                   ['1120-21-4', 'NaN',         7376.9],   # l
+    'O-XYLENE':                     ['95-47-6',   'NaN',         4513.1],   # l
     'P-XYLENE':                     ['106-42-3',  'NaN',         'NaN'],
     'T2BUTENE':                     ['624-64-6',  'NaN',         'NaN'],
 }
