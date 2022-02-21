@@ -10,7 +10,7 @@ The following files are provided:
 
 [ebsilon_cgam_results.xlsx][] - An Excel spreadsheet containing all results.
 
-[ebsilon_cgam_results_empty.xlsx][] - An empty Excel spreadsheet to export new results from Ebsilon. Data -> User-Excel -> Protocol
+[ebsilon_cgam_results_empty.xlsx][] - An empty Excel spreadsheet to export new results from the Ebsilon simulation. Data -> User-Excel -> Protocol
 
 [ebsilon_cgam_results.csv][] - A comma seperated values file containing all results.
 
