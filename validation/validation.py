@@ -51,3 +51,25 @@ print(delta_abs)
 
 delta_abs.to_csv("delta-abs-tespy-ebsilon.csv")
 delta_rel.to_csv("delta-rel-tespy-ebsilon.csv")
+
+tdo = pd.read_csv("cgam-berechnungen-aus-tdo.csv", decimal=",", sep=";", index_col=0)
+tdo.index = tdo.index.astype(str)
+
+tespy = pd.read_csv("cgam-tespy-results.csv", index_col=0)
+tespy = tespy.loc[tdo.index.values, tdo.columns.values]
+tespy["T"] += 273.15
+
+delta_abs = (tespy - tdo)
+delta_rel = (delta_abs / tdo).fillna(0)
+
+print(delta_abs)
+print(delta_rel)
+
+delta_abs.to_csv("delta-abs-tespy-tdo.csv")
+delta_rel.to_csv("delta-rel-tespy-tdo.csv")
+
+# delta_abs = (epsilon - tdo)
+# delta_rel = (delta_abs / tdo).fillna(0)
+
+# print(delta_rel)
+# print(delta_abs)
