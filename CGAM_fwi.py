@@ -16,9 +16,13 @@ from tespy.connections import Connection, Bus
 fluid_list = ['O2', 'H2O', 'N2', 'CO2', 'CH4']
 nwk = Network(fluids=fluid_list, p_unit='bar', T_unit='C')
 
-tmp = {'O2': 0.2059, 'N2': 0.7748, 'CO2': 0.0003, 'H2O': 0.019,
-        'CH4': 0}
-air = {key: value / 28.648 * CPSI('M', key) * 1000 for key, value in tmp.items()}
+air_molar = {
+    'O2': 0.2059, 'N2': 0.7748, 'CO2': 0.0003, 'H2O': 0.019, 'CH4': 0
+}
+molar_masses = {key: CPSI('M', key) * 1000 for key in air_molar}
+M_air = sum([air_molar[key] * molar_masses[key] for key in air_molar])
+
+air = {key: value / M_air * molar_masses[key] for key, value in air_molar.items()}
 
 water = {f: (0 if f != 'H2O' else 1) for f in air}
 fuel = {f: (0 if f != 'CH4' else 1) for f in air}
@@ -104,5 +108,13 @@ nwk.solve('design')
 nwk.save('stable')
 
 nwk.print_results()
+
+for idx in nwk.results["Connection"].index:
+    c = nwk.get_conn(idx)
+
+    molarflow = {key: value / molar_masses[key] * c.m.val_SI * 1000 for key, value in c.fluid.val.items()}
+    molar = {key: value / sum(molarflow.values()) for key, value in molarflow.items()}
+
+    nwk.results["Connection"].loc[idx, molar.keys()] = molar
 
 nwk.results["Connection"].to_csv("cgam-tespy-results.csv")
