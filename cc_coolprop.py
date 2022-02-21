@@ -42,7 +42,7 @@ nwk.add_conns(c3, c4, c12)
 
 c3.set_attr(p=10, T=850 - 273.15, fluid=air, m=91.2757)
 c4.set_attr(T=1520 - 273.15)
-c12.set_attr(T=25, fluid=fuel)
+c12.set_attr(T=25, fluid=fuel, p=12)
 
 cb.set_attr(eta=0.98, pr=0.95)
 
