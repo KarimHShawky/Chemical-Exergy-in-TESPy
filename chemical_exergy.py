@@ -82,9 +82,9 @@ def calc_reactive_exergy(conn, p0, T0):
     Cond=dict()
     x_cond=dict()
     ex_react=0
-    Molmasssum=0
+    #Molmasssum=0
     #Molmasssum=28.649/1000   Air Molmass
-    #Molmasssum=28.254/1000   Fluegas Molmass
+    Molmasssum=28.254/1000   Fluegas Molmass
     
     # for key in conn.fluid.val:   if Molmasssum=0
     #         Molmasssum+= conn.fluid.val[key]*(CPSI('M', key))
