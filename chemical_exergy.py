@@ -7,11 +7,11 @@ Created on Wed Feb 16 19:50:02 2022
 """
 from CoolProp.CoolProp import PropsSI as CPSI
 from tespy.tools import fluid_properties as fp
-from ChemExDictionaryTest import Chem_Ex_Szargut
+from libChemExAhrendts import Chem_Ex
 import CoolProp.CoolProp as CP
+import numpy as np
 
-
-
+R=8.314/1000
 
 
 def calc_nonreact_exergy(conn, p0, T0):
@@ -34,7 +34,7 @@ def calc_nonreact_exergy(conn, p0, T0):
 
 
 def mass_to_mol_comp(conn, Molmasssum):
-    x= conn.fluid.val
+    x=dict()
     for key in conn.fluid.val:
         x[key]= (conn.fluid.val[key])/CPSI('M', key)*(Molmasssum)
           
@@ -48,68 +48,115 @@ def mol_to_mass_comp(omega,x_dry,Molmasssum):
 
 
 
-def cond_check (conn, p0, T0):
-    omega=dict()
-    x=dict()
-    omega=conn.fluid.val
-    if conn.fluid.val['H2O'] == None or conn.fluid.val['H2O']==0:
-       omega=omega 
-    else :
+def cond_check (key, p0, T0, Molmasssum, x):
     
-        Molmasssum=0
-        for key in conn.fluid.val:
-            Molmasssum+= conn.fluid.val[key]*(CPSI('M', key))
-        
-          
-        x= mass_to_mol_comp(conn, Molmasssum)
-        
-        
-        if p0*x['H2O']> CPSI('P', 'T', T0, 'Q', 0, 'H2O') :
+    
+    x_cond=dict()
+    
+   
+   
+    a=CP.get_aliases(key)
+     
+    y=[Chem_Ex[k] for k in a if k in Chem_Ex]
+       
+    if y[0][2]=='NaN':
+            Cond=False
+    else:
+                
+                if p0*x[key]> CPSI('P', 'T', T0, 'Q', 0, key) :
+                
+                    Cond=True
+                    x_dry=x.copy()
+                    x_dry.pop(key)
+                    x_g= sum(x_dry.values())/((p0/CPSI('P', 'T', T0, 'Q', 0, key))-1)
+                    x_cond[key]=x[key]-x_g
+                    x[key]=x_g
+                    
+                else :
+                    Cond=False
             
-            x_dry=x.copy()
-            x_dry.pop('H2O')
-            x_H2Og= sum(x_dry.values())/((p0/CPSI('P', 'T', T0, 'Q', 0, 'H2O'))-1)
-            x_H2Of=x['H2O']-x_H2Og
-            x['H2Og']=x.pop('H2O')
-            x['H2Og']=x_H2Og
-            x['H2Of']=x_H2Of
-            
-            omega=mol_to_mass_comp(omega, x_dry, Molmasssum)
-            omega['H2Og']=x['H2Og']*CPSI('M','H2O')/Molmasssum
-            omega['H2Of']=x['H2Of']*CPSI('M','H2O')/Molmasssum
-           
-        else :
-            omega=omega
-        
-    return omega
-def calc_reactive_exergy(omega):
-        ex_react=0
-        for fld in omega :
-            if fld=='H2Of':
-                ex_react+=  omega[fld]*Chem_Ex_Szargut['Water(l)'][2]
-            else :
-            
-                    x=CP.get_aliases(fld)
-                    y= [Chem_Ex_Szargut[k][2] for k in x if k in Chem_Ex_Szargut]
-                    #print(y)
-                    ex_react += omega[fld]*y[0]
+                
+    return  x, x_cond ,Cond
 
-        return ex_react
+def calc_reactive_exergy(conn, p0, T0):
+    x=dict()
+    Cond=dict()
+    x_cond=dict()
+    x1=dict()
+    x2=0
+    ex_react=0
+    ex_react_cond=0
+    ex_react_dry=0
+    Molmasssum=0
+    #Molmasssum=28.649/1000  # Air Molmass
+    #Molmasssum=28.254/1000   #Fluegas Molmass
+    
+    for key in conn.fluid.val: #  if Molmasssum=0
+             Molmasssum+= conn.fluid.val[key]*(CPSI('M', key))
+             
+    x= mass_to_mol_comp(conn, Molmasssum)
+    
+    
+    for key in x: 
+            
+            if x[key]==1:
+                a=CP.get_aliases(key)
+                y= [Chem_Ex[k][Chem_Ex[k][4]] for k in a if k in Chem_Ex]
+                ex_react_dry=(y[0])
+              
+            else:
+                
+                
+                if x[key]!=0:
+                    x, x_cond, Cond[key] =cond_check(key, p0, T0, Molmasssum,x)
+                    
+                          
+                else:
+                    Cond[key]=False
+                   
+                if x[key]==0:
+                    ex_react+=0
+                else:
+                        #for key in x:
+                        x1[key]=x[key]/sum(x.values())
+                         
+                        
+                        if Cond[key]==True:
+                            a=CP.get_aliases(key)
+                            y= [Chem_Ex[k][2] for k in a if k in Chem_Ex]
+                            
+                            ex_react_cond+=  (x_cond[key]*y[0])
+                            z= [Chem_Ex[k][3] for k in a if k in Chem_Ex]
+                            
+                            
+                            ex_react_dry+=(x1[key]*z[0]+T0*R*x1[key]*np.log(x1[key]))
+                            x2+=x_cond[key]
+                        else :
+                        
+                   
+                            a=CP.get_aliases(key)
+                            y= [Chem_Ex[k][3] for k in a if k in Chem_Ex]
+                            ex_react_dry+=(x1[key]*y[0]+T0*R*x1[key]*(np.log(x1[key])))
+    
+    ex_react= ex_react_cond + (1-x2)*ex_react_dry
+    ex_react*= 1/Molmasssum
+  
+    return ex_react
 
 
 def get_chemical_exergy(conn, p0, T0):
     ex_nonreact=calc_nonreact_exergy(conn,p0, T0)
     
-    omega=cond_check(conn,p0, T0)
+   
     
-    ex_react=calc_reactive_exergy(omega)
+    ex_react=calc_reactive_exergy(conn, p0, T0)
     
     Ex_react= ex_react* conn.m.val_SI
     Ex_nonreact= ex_nonreact* conn.m.val_SI
     
     ex_chemical= ex_react+ex_nonreact
     Ex_chemical= ex_chemical*conn.m.val_SI
-    return ex_nonreact, ex_react
+    return ex_chemical
     
 
 
