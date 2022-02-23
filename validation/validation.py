@@ -3,73 +3,82 @@
 
 import pandas as pd
 
-coolprop = pd.read_csv("CGAM_combustion_CoolProp.csv", index_col=0)
-kkh = pd.read_csv("CGAM_combustion_KKH.csv", index_col=0)
+tables = ["kkh", "coolprop"]
 
-delta_abs = kkh - coolprop
-delta_rel = (delta_abs / coolprop).fillna(0)
+tdo = pd.read_csv("tdo/cgam-tdo-results.csv", decimal=",", sep=";", index_col=0)
+tdo.index = tdo.index.astype(str)
 
-print(delta_rel)
-print(delta_abs)
+for table_name in tables:
+    table = pd.read_csv("combustion/cgam-combustion-" + table_name + "-results.csv", index_col=0)
+    table.index = table.index.astype(str)
+    table_mod = table.loc[
+        [r for r in tdo.index.values if r in table.index.values],
+        [c for c in tdo.columns.values if c in table.columns.values]
+    ]
 
-delta_abs.to_csv("delta-abs-kkh-coolprop.csv")
-delta_rel.to_csv("delta-rel-kkh-coolprop.csv")
+    table_mod["T"] += 273.15
 
-epsilon = pd.read_csv("cgam-tdo-ver-0-4-results.csv", index_col=0)
+    tdo_mod = tdo.loc[table_mod.index.values, table_mod.columns.values]
+
+    delta_abs = table_mod - tdo_mod
+    delta_rel = (delta_abs / tdo_mod).fillna(0)
+
+    print(delta_rel)
+    print(delta_abs)
+
+
+tables = ["tespy", "ebsilon"]
+
+for table_name in tables:
+    if table_name == "ebsilon":
+        table = pd.read_csv("ebsilon/cgam-" + table_name + "-results.csv", decimal=",", sep=";", index_col=0)
+    else:
+        table = pd.read_csv("cgam-" + table_name + "-results.csv", index_col=0)
+        table["T"] += 273.15
+
+    table.index = table.index.astype(str)
+    table_mod = table.loc[
+        [r for r in tdo.index.values if r in table.index.values],
+        [c for c in tdo.columns.values if c in table.columns.values]
+    ]
+
+    tdo_mod = tdo.loc[table_mod.index.values, table_mod.columns.values]
+
+    delta_abs = table_mod - tdo_mod
+    delta_rel = (delta_abs / tdo_mod).fillna(0)
+
+    print(delta_rel)
+    print(delta_abs)
+
 tespy = pd.read_csv("cgam-tespy-results.csv", index_col=0)
+ebsilon = pd.read_csv("ebsilon/cgam-ebsilon-results.csv", decimal=",", sep=";", index_col=0)
 
 tespy = tespy.loc[
-    epsilon.index, epsilon.columns
+    ebsilon.index, ebsilon.columns
 ]
 
 tespy.loc[:, ["h", "s"]] /= 1e3
 tespy.loc[:, ["T"]] += 273.15
-epsilon.loc[:, ["T"]] += 273.15
 
 # set reference enthalpies and entropies
 
 # air
 air = ["1", "2", "3"]
 tespy.loc[air, ["h", "s"]] -= tespy.loc[air[0], ["h", "s"]]
-epsilon.loc[air, ["h", "s"]] -= epsilon.loc[air[0], ["h", "s"]]
+ebsilon.loc[air, ["h", "s"]] -= ebsilon.loc[air[0], ["h", "s"]]
 
 # CH4
 ch4 = ["10"]
 tespy.loc[ch4, ["h", "s"]] -= tespy.loc[ch4[0], ["h", "s"]]
-epsilon.loc[ch4, ["h", "s"]] -= epsilon.loc[ch4[0], ["h", "s"]]
+ebsilon.loc[ch4, ["h", "s"]] -= ebsilon.loc[ch4[0], ["h", "s"]]
 
 # flue gas
 fg = ["4", "5", "6", "6p", "7"]
 tespy.loc[fg, ["h", "s"]] -= tespy.loc[fg[0], ["h", "s"]]
-epsilon.loc[fg, ["h", "s"]] -= epsilon.loc[fg[0], ["h", "s"]]
+ebsilon.loc[fg, ["h", "s"]] -= ebsilon.loc[fg[0], ["h", "s"]]
 
-delta_abs = (tespy - epsilon)
-delta_rel = (delta_abs / epsilon).fillna(0)
+delta_abs = (tespy - ebsilon)
+delta_rel = (delta_abs / ebsilon).fillna(0)
 
 print(delta_rel)
 print(delta_abs)
-
-delta_abs.to_csv("delta-abs-tespy-ebsilon.csv")
-delta_rel.to_csv("delta-rel-tespy-ebsilon.csv")
-
-tdo = pd.read_csv("cgam-berechnungen-aus-tdo.csv", decimal=",", sep=";", index_col=0)
-tdo.index = tdo.index.astype(str)
-
-tespy = pd.read_csv("cgam-tespy-results.csv", index_col=0)
-tespy = tespy.loc[tdo.index.values, tdo.columns.values]
-tespy["T"] += 273.15
-
-delta_abs = (tespy - tdo)
-delta_rel = (delta_abs / tdo).fillna(0)
-
-print(delta_abs)
-print(delta_rel)
-
-delta_abs.to_csv("delta-abs-tespy-tdo.csv")
-delta_rel.to_csv("delta-rel-tespy-tdo.csv")
-
-# delta_abs = (epsilon - tdo)
-# delta_rel = (delta_abs / tdo).fillna(0)
-
-# print(delta_rel)
-# print(delta_abs)

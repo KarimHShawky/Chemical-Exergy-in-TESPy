@@ -117,4 +117,7 @@ for idx in nwk.results["Connection"].index:
 
     nwk.results["Connection"].loc[idx, molar.keys()] = molar
 
+nwk.results["Connection"].loc["AC", "P"] = cmp.P.val
+nwk.results["Connection"].loc["EXP", "P"] = tur.P.val
+
 nwk.results["Connection"].to_csv("cgam-tespy-results.csv")
