@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 16 19:50:02 2022
 
-@author: Karim
+
+@author: Karim Shawky
 """
 from CoolProp.CoolProp import PropsSI as CPSI
 from tespy.tools import fluid_properties as fp
