@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-
-
 @author: Karim Shawky
 """
 from CoolProp.CoolProp import PropsSI as CPSI
