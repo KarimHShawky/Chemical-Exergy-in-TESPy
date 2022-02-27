@@ -68,7 +68,7 @@ zenodo doi: [][].
 
 ## MIT License
 
-Copyright (c) 2022 Francesco Witte, Karim Schawky, Mathias Hofmann
+Copyright (c) 2022 Francesco Witte, Karim Shawky, Mathias Hofmann
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
