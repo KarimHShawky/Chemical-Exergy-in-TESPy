@@ -11,6 +11,7 @@ from tespy.components import (
     DiabaticCombustionChamber, Sink, Source, Valve
 )
 from tespy.connections import Connection, Bus
+from chemical_exergy.chemical_exergy import get_chemical_exergy
 
 
 fluid_list = ['O2', 'H2O', 'N2', 'CO2', 'CH4']
@@ -97,7 +98,7 @@ heat_output.add_comps(
 power_output.add_comps(
     {'comp': cmp, 'base': 'bus', 'char': 1},
     {'comp': tur, 'char': 1})
-fuel_input.add_comps({'comp': cb})
+fuel_input.add_comps({'comp': cb, 'base': 'bus'})
 nwk.add_busses(heat_output, power_output, fuel_input)
 
 nwk.solve('design')
@@ -121,3 +122,10 @@ nwk.results["Connection"].loc["AC", "P"] = cmp.P.val
 nwk.results["Connection"].loc["EXP", "P"] = tur.P.val
 
 nwk.results["Connection"].to_csv("cgam-tespy-results.csv")
+
+for c in nwk.conns["object"]:
+    c.get_physical_exergy(1.013e5, 298.15)
+    c.Ex_chemical, c.ex_chemical = get_chemical_exergy(c, 1.013e5, 298.15)
+
+    print(c.label, c.ex_physical, c.ex_chemical)
+    print(c.label, (c.Ex_chemical * 1e3 + c.Ex_physical) / 1e6)
