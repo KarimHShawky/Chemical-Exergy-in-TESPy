@@ -31,7 +31,7 @@ tables = ["tespy", "ebsilon"]
 
 for table_name in tables:
     if table_name == "ebsilon":
-        table = pd.read_csv("ebsilon/cgam-" + table_name + "-results.csv", decimal=",", sep=";", index_col=0)
+        table = pd.read_csv("ebsilon/cgam-" + table_name + "-results.csv", index_col=0)
     else:
         table = pd.read_csv("cgam-" + table_name + "-results.csv", index_col=0)
         table["T"] += 273.15
@@ -51,7 +51,7 @@ for table_name in tables:
     print(delta_abs)
 
 tespy = pd.read_csv("cgam-tespy-results.csv", index_col=0)
-ebsilon = pd.read_csv("ebsilon/cgam-ebsilon-results.csv", decimal=",", sep=";", index_col=0)
+ebsilon = pd.read_csv("ebsilon/cgam-ebsilon-results.csv", index_col=0)
 
 tespy = tespy.loc[
     ebsilon.index, ebsilon.columns
