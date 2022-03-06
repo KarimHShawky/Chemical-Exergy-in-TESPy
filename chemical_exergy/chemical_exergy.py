@@ -8,8 +8,8 @@
 import numpy as np
 from CoolProp.CoolProp import PropsSI              # CP dublette
 import CoolProp.CoolProp as CP                      # CP dublette
-from tespy.tools import fluid_properties as fp      # obsolete ?
-from libChemExAhrendts import Chem_Ex
+from tespy.tools.helpers import molar_mass_flow
+from .libChemExAhrendts import Chem_Ex
 
 R = 8.314462618*1E-3  # kJ/(mol K)
 
@@ -54,10 +54,12 @@ def calc_chemical_exergy(conn, ambient_pressure, ambient_temperature):
     ex_dry = 0
     molar_mass_mixture = 0
 
-    for key in conn.fluid.val:                  # if molar_mass_mixture = 0
-        molar_mass_mixture += conn.fluid.val[key] * (PropsSI('M', key))
-             
-    x = mass2molar_fraction(conn, molar_mass_mixture)
+    x = {
+            fluid: y / (PropsSI('M', fluid) * molar_mass_flow(conn.fluid.val))
+            for fluid, y in conn.fluid.val.items()
+        }
+
+    molar_mass_mixture = sum([x * PropsSI('M', fluid) for fluid, x in x.items()])
 
     for key in x:
         if x[key] == 1:                         # pure substance
