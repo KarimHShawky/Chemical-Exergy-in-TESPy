@@ -4,14 +4,13 @@ Example for the exergy analysis in [TESPy][]. Find more information
 about the exergy analysis feature in the respective [online
 documentation][].
 
-The supercritical CO<sub>2</sub> power cycle model has the following
-topology:
+The CGAM model has the following topology:
 
 <figure>
 <img src="./flowsheet.svg" class="align-center" />
 </figure>
 
-Find the model specifications and results in the sCO2.py script and the
+Find the model specifications and results in the CGAM.py script and the
 corresponding [pdf model report][].
 
 ## Usage
@@ -23,48 +22,67 @@ directory of the repository run
 pip install -r ./requirements.txt
 ```
 
-to install the version requirements for the CGAM.py python script.
+to install the version requirements for the CGAM.py python script. The original
+data of the plant are obtained from the following publications:
 
-The original data of the plant are obtained from the following
-publication:
+CGAM process simulation:
+*A. Bejan, G. Tsatsaronis, M. Moran: Thermal Design and Optimization, Wiley,*
+*New York, 1996.*
 
-*Source1*
+KKH polynomials: *O. Knacke, O. Kubschewski, K. Hesselmann, Thermochemical*
+*Properties of Inorganic Substances, 2nd ed., Springer, Berlin, 1991.*
 
-*Source2*
+## Validation of the model and running the scripts
 
-## Valdiation and Results of Exergy Analysis
+The [validation][] folder contains the original data from literature. The
+deviation between literature and TESPy values can be obtained by changing to
+validation directory and running validation.py.
 
-The tables below show the results of the simulation as well as the
-validation results. The original data from the publication are provided
-in the .csv files [][] and
-[][].
+``` bash
+cd validation
+python validation.py
+```
 
-### Connection data
+To run the TESPy scripts yourself, in you environment run
 
-**TESPy simulation**
+``` bash
+python CGAM.py
+```
 
-**Absolute difference in the values Δ**
+from the root of this project. This script contains the full process simulation.
 
-**Relative deviation in the values δ**
+To run the combustion chamber validation scripts, please change into that
+directory and run the cc_coolprop.py script.
 
-### Component data
+``` bash
+cd validation/combustion
+python cc_coolprop.py
+```
 
-**TESPy simulation**
+The cc_kkh.py script requires a different version of TESPy to run. It builds on
+the Knacke, Kubschewski, Hesselmann polynomial functions, which were used in
+Thermal Design and Optimization.
 
+For this, please create a new environment and install with the respective
+requirements file.
 
-**Absolute difference in the values Δ**
+``` bash
+pip install -r ./requirements_kkh.txt
+```
 
+Then change into the validation/combustion directory and run the cc_kkh.py
+script.
 
-**Relative deviation in the values δ**
-
-
-### Network data
+``` bash
+cd validation/combustion
+python cc_kkh.py
+```
 
 ## Citation
 
 The state of this repository is archived via zenodo. If you are using the
 TESPy model within your own research, you can refer to this model via the
-zenodo doi: [][].
+zenodo doi: [10.5281/zenodo.example][].
 
 ## MIT License
 
@@ -92,6 +110,5 @@ SOFTWARE.
   [TESPy]: https://github.com/oemof/tespy
   [online documentation]: https://tespy.readthedocs.io/
   [pdf model report]: sCO2_model_report.pdf
-  [component_validation.csv]: component_validation.csv
-  [connection_validation.csv]: connection_validation.csv
-  [10.5281/zenodo.4751796]: https://zenodo.org/record/4751796
+  [validation]: ./validation/
+  [10.5281/zenodo.example]: https://zenodo.org/record/example

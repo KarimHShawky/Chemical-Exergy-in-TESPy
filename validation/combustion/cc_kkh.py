@@ -46,7 +46,7 @@ c10.set_attr(T=25, fluid=fuel, p=12)
 
 cb.set_attr(eta=0.98, pr=0.95)
 
-nwk.solve('design', min_iter=20)
+nwk.solve('design')
 nwk.print_results()
 
 for idx in nwk.results["Connection"].index:

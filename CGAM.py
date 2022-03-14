@@ -8,10 +8,10 @@ from CoolProp.CoolProp import PropsSI as CPSI
 from tespy.networks import Network
 from tespy.components import (
     HeatExchanger, Turbine, Compressor, Drum,
-    DiabaticCombustionChamber, Sink, Source, Valve
+    DiabaticCombustionChamber, Sink, Source
 )
 from tespy.connections import Connection, Bus
-from chemical_exergy.chemical_exergy import get_chemical_exergy
+from chemical_exergy.libChemExAhrendts import Chem_Ex
 
 
 fluid_list = ['O2', 'H2O', 'N2', 'CO2', 'CH4']
@@ -106,26 +106,41 @@ nwk.solve('design')
 power.set_attr(P=-30e6)
 c1.set_attr(m=None)
 nwk.solve('design')
+
 nwk.save('stable')
 
 nwk.print_results()
 
-for idx in nwk.results["Connection"].index:
+result = nwk.results["Connection"].copy()
+
+for idx in result.index:
     c = nwk.get_conn(idx)
 
-    molarflow = {key: value / molar_masses[key] * c.m.val_SI * 1000 for key, value in c.fluid.val.items()}
-    molar = {key: value / sum(molarflow.values()) for key, value in molarflow.items()}
+    molarflow = {
+        key: value / molar_masses[key] * c.m.val_SI * 1000
+        for key, value in c.fluid.val.items()
+    }
+    molarflow_sum = sum(molarflow.values())
+    molar = {key: value / molarflow_sum for key, value in molarflow.items()}
 
-    nwk.results["Connection"].loc[idx, molar.keys()] = molar
+    result.loc[idx, molar.keys()] = molar
 
-nwk.results["Connection"].loc["AC", "P"] = cmp.P.val
-nwk.results["Connection"].loc["EXP", "P"] = tur.P.val
+result.loc["AC", "P"] = cmp.P.val
+result.loc["EXP", "P"] = tur.P.val
 
-nwk.results["Connection"].to_csv("cgam-tespy-results.csv")
+result.to_csv("validation/cgam-tespy-results.csv")
+
+exergy_data = pd.DataFrame(columns=["e_PH", "e_CH", "E"])
 
 for c in nwk.conns["object"]:
     c.get_physical_exergy(1.013e5, 298.15)
-    c.Ex_chemical, c.ex_chemical = get_chemical_exergy(c, 1.013e5, 298.15)
+    c.get_chemical_exergy(1.013e5, 298.15, Chem_Ex)
+    if c.label in ['1', '2', '3']:
+        c.Ex_chemical, c.ex_chemical = 0, 0
 
-    print(c.label, c.ex_physical, c.ex_chemical)
-    print(c.label, (c.Ex_chemical * 1e3 + c.Ex_physical) / 1e6)
+    exergy_data.loc[c.label] = [
+        c.ex_physical / 1e3, c.ex_chemical / 1e3,
+        (c.Ex_chemical + c.Ex_physical) / 1e6
+    ]
+
+exergy_data.to_csv("cgam-tespy-exergy.csv")
