@@ -11,6 +11,7 @@ from tespy.components import (
     DiabaticCombustionChamber, Sink, Source
 )
 from tespy.connections import Connection, Bus
+from tespy.tools import document_model
 from chemical_exergy.libChemExAhrendts import Chem_Ex
 
 
@@ -144,3 +145,21 @@ for c in nwk.conns["object"]:
     ]
 
 exergy_data.to_csv("cgam-tespy-exergy.csv")
+
+fmt = {
+    'latex_body': True,
+    'include_results': True,
+    'HeatExchanger': {
+        'params': ['Q', 'ttd_l', 'ttd_u', 'pr1', 'pr2']},
+    'Condenser': {
+        'params': ['Q', 'ttd_l', 'ttd_u', 'pr1', 'pr2']},
+    'Connection': {
+        'p': {'float_fmt': '{:,.4f}'},
+        's': {'float_fmt': '{:,.4f}'},
+        'h': {'float_fmt': '{:,.2f}'},
+        'fluid': {'include_results': False}
+    },
+    'include_results': True,
+    'draft': False
+}
+document_model(nwk, filename='CGAM_model_report.tex', fmt=fmt)
