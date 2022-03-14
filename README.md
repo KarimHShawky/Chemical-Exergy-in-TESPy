@@ -109,6 +109,6 @@ SOFTWARE.
 
   [TESPy]: https://github.com/oemof/tespy
   [online documentation]: https://tespy.readthedocs.io/
-  [pdf model report]: sCO2_model_report.pdf
+  [pdf model report]: CGAM_model_report.pdf
   [validation]: ./validation/
   [10.5281/zenodo.example]: https://zenodo.org/record/example
