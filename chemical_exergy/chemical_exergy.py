@@ -6,8 +6,8 @@
 """
 
 import numpy as np
-from CoolProp.CoolProp import PropsSI              # CP dublette
-import CoolProp.CoolProp as CP                      # CP dublette
+from CoolProp.CoolProp import PropsSI
+import CoolProp.CoolProp as CP
 from tespy.tools.helpers import molar_mass_flow
 from .libChemExAhrendts import Chem_Ex
 
@@ -28,7 +28,7 @@ def flash_routine(key, ambient_pressure, ambient_temperature, x):
     y = [Chem_Ex[k] for k in a if k in Chem_Ex]
        
     if y[0][2] == 'NaN':
-        condensation = False                    # Was ist hier die Idee? ### Falls kein Flüssiger Wert vorliegt würde es rechnerisch keinen Sinn ergeben eine Kondensationsprüfung durch zuführen
+        condensation = False
     else:
         if ambient_pressure * x[key] > PropsSI('P', 'T', ambient_temperature, 'Q', 0, key):
             condensation = True
