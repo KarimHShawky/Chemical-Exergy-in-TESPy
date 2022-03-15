@@ -9,9 +9,6 @@ from tespy.networks import Network
 from tespy.components import DiabaticCombustionChamber, Sink, Source
 from tespy.connections import Connection
 
-from tespy.tools.kkh import enthalpy_mass, enthalpy
-from tespy.tools.fluid_properties import molar_mass_flow
-
 backend = 'HEOS::'
 fluid_list = ['O2', 'H2O', 'N2', 'CO2', 'CH4']
 nwk = Network(fluids=[backend + f for f in fluid_list], p_unit='bar', T_unit='C', h_range=[-1e9, 1e7])

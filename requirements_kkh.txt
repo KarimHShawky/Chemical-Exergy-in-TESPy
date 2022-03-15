@@ -1,0 +1,6 @@
+git+https://github.com/oemof/tespy@ab05877#egg=tespy
+CoolProp==6.4.1
+matplotlib==3.5.1
+numpy==1.21.0
+pandas==1.4.1
+tabulate==0.8.9

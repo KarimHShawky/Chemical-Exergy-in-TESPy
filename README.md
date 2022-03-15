@@ -15,15 +15,15 @@ corresponding [pdf model report][].
 
 ## Usage
 
-Clone the repository and build a new python environment. From the base
+Clone the repository and build a new `python3.8` environment. From the base
 directory of the repository run
 
 ``` bash
 pip install -r ./requirements.txt
 ```
 
-to install the version requirements for the CGAM.py python script. The original
-data of the plant are obtained from the following publications:
+to install the version requirements for the `CGAM.py` python script. The
+original data of the plant are obtained from the following publications:
 
 CGAM process simulation:
 *A. Bejan, G. Tsatsaronis, M. Moran: Thermal Design and Optimization, Wiley,*
@@ -43,7 +43,7 @@ cd validation
 python validation.py
 ```
 
-To run the TESPy scripts yourself, in you environment run
+To run the TESPy scripts yourself, in your environment run
 
 ``` bash
 python CGAM.py
@@ -52,26 +52,28 @@ python CGAM.py
 from the root of this project. This script contains the full process simulation.
 
 To run the combustion chamber validation scripts, please change into that
-directory and run the cc_coolprop.py script.
+directory and run the `cc_coolprop.py` script.
 
 ``` bash
 cd validation/combustion
 python cc_coolprop.py
 ```
 
-The cc_kkh.py script requires a different version of TESPy to run. It builds on
-the Knacke, Kubschewski, Hesselmann polynomial functions, which were used in
-Thermal Design and Optimization.
+The `cc_kkh.py` script requires a different version of TESPy to run. It builds
+on the Knacke, Kubschewski, Hesselmann polynomial functions, which were used in
+Thermal Design and Optimization. Currently, there is no native support for these
+polynomials in TESPy. They have been implemented for the validation only.
+Furthermore, the lower heating value of Methane is hard-coded to `50.0 MJ` in
+this version of TESPy.
 
-For this, please create a new environment and install with the respective
-requirements file.
+For this, please create a fresh environment and install the dependencies with
+the respective requirements file.
 
 ``` bash
 pip install -r ./requirements_kkh.txt
 ```
 
-Then change into the validation/combustion directory and run the cc_kkh.py
-script.
+Then change into the validation/combustion directory and run the script.
 
 ``` bash
 cd validation/combustion
