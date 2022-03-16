@@ -63,8 +63,8 @@ The `cc_kkh.py` script requires a different version of TESPy to run. It builds
 on the Knacke, Kubschewski, Hesselmann polynomial functions, which were used in
 Thermal Design and Optimization. Currently, there is no native support for these
 polynomials in TESPy. They have been implemented for the validation only.
-Furthermore, the lower heating value of Methane is hard-coded to `50.0 MJ` in
-this version of TESPy.
+Furthermore, the lower heating value of Methane is hard-coded to
+`50.01315 MJ/kg` in this version of TESPy.
 
 For this, please create a fresh environment and install the dependencies with
 the respective requirements file.

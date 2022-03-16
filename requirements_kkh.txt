@@ -1,4 +1,4 @@
-git+https://github.com/oemof/tespy@ab05877#egg=tespy
+git+https://github.com/oemof/tespy@e999d7d#egg=tespy
 CoolProp==6.4.1
 matplotlib==3.5.1
 numpy==1.21.0
