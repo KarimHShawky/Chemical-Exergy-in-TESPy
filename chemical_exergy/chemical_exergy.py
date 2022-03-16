@@ -6,8 +6,7 @@
 """
 
 import numpy as np
-from CoolProp.CoolProp import PropsSI              # CP dublette
-import CoolProp.CoolProp as CP                      # CP dublette
+import CoolProp.CoolProp as CP
 from tespy.tools.helpers import molar_mass_flow
 from .libChemExAhrendts import Chem_Ex
 
@@ -17,7 +16,7 @@ R = 8.314462618*1E-3  # kJ/(mol K)
 def mass2molar_fraction(conn, molar_mass_mixture):
     molar_fraction = dict()
     for key in conn.fluid.val:
-        molar_fraction[key] = conn.fluid.val[key] / PropsSI('M', key) * molar_mass_mixture
+        molar_fraction[key] = conn.fluid.val[key] / CP.PropsSI('M', key) * molar_mass_mixture
           
     return molar_fraction
 
@@ -28,13 +27,13 @@ def flash_routine(key, ambient_pressure, ambient_temperature, x):
     y = [Chem_Ex[k] for k in a if k in Chem_Ex]
        
     if y[0][2] == 'NaN':
-        condensation = False                    # Was ist hier die Idee? ### Falls kein Flüssiger Wert vorliegt würde es rechnerisch keinen Sinn ergeben eine Kondensationsprüfung durch zuführen
+        condensation = False
     else:
-        if ambient_pressure * x[key] > PropsSI('P', 'T', ambient_temperature, 'Q', 0, key):
+        if ambient_pressure * x[key] > CP.PropsSI('P', 'T', ambient_temperature, 'Q', 0, key):
             condensation = True
             x_dry = x.copy()
             x_dry.pop(key)
-            x_g = sum(x_dry.values())/((ambient_pressure / PropsSI('P', 'T', ambient_temperature, 'Q', 0, key)) - 1)
+            x_g = sum(x_dry.values())/((ambient_pressure / CP.PropsSI('P', 'T', ambient_temperature, 'Q', 0, key)) - 1)
             x_cond[key] = x[key] - x_g
             x[key] = x_g
         else:
@@ -44,7 +43,6 @@ def flash_routine(key, ambient_pressure, ambient_temperature, x):
 
 
 def calc_chemical_exergy(conn, ambient_pressure, ambient_temperature):
-    x = dict()
     cond = dict()
     x_cond = dict()
     x1 = dict()
@@ -52,14 +50,13 @@ def calc_chemical_exergy(conn, ambient_pressure, ambient_temperature):
     ex = 0
     ex_cond = 0
     ex_dry = 0
-    molar_mass_mixture = 0
 
     x = {
-            fluid: y / (PropsSI('M', fluid) * molar_mass_flow(conn.fluid.val))
+            fluid: y / (CP.PropsSI('M', fluid) * molar_mass_flow(conn.fluid.val))
             for fluid, y in conn.fluid.val.items()
         }
 
-    molar_mass_mixture = sum([x * PropsSI('M', fluid) for fluid, x in x.items()])
+    molar_mass_mixture = sum([x * CP.PropsSI('M', fluid) for fluid, x in x.items()])
 
     for key in x:
         if x[key] == 1:                         # pure substance
