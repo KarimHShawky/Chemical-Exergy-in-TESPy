@@ -84,7 +84,7 @@ python cc_kkh.py
 
 The state of this repository is archived via zenodo. If you are using the
 TESPy model within your own research, you can refer to this model via the
-zenodo doi: [10.5281/zenodo.example][].
+zenodo doi: [10.5281/zenodo.6592257][].
 
 ## MIT License
 
@@ -113,4 +113,4 @@ SOFTWARE.
   [online documentation]: https://tespy.readthedocs.io/
   [pdf model report]: CGAM_model_report.pdf
   [validation]: ./validation/
-  [10.5281/zenodo.example]: https://zenodo.org/record/example
+  [10.5281/zenodo.6592257]: https://zenodo.org/record/6592257
